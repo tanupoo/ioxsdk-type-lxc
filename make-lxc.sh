@@ -1,7 +1,7 @@
 #!/bin/sh
 
 usage() {
-	echo "Usage: sh $0 (ie4k-lxc|ir800-lxc) [mirror]"
+	echo "Usage: sh $0 (ie4k-lxc|ir800-lxc)"
 	exit 0
 }
 
@@ -17,12 +17,13 @@ ie4k-lxc|ir800-lxc)
 	usage
 	;;
 esac
-if [ ! -z "$2" ] ; then
-	if [ ! -d "$2" ] ; then
-		echo "ERROR: no such directory. [$2]"
+
+# check YOCTO_MIRROR, just in case
+if [ ! -z "$YOCTO_MIRROR" ] ; then
+	if [ ! -d "$YOCTO_MIRROR" ] ; then
+		echo "ERROR: YOCTO_MIRROR is not a directory. [$YOCTO_MIRROR]"
 		usage
 	fi
-	export YOCTO_MIRROR="$2"
 fi
 
 . ./make.env
