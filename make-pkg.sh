@@ -7,6 +7,8 @@ usage() {
 	exit 0
 }
 
+WORKDIR=ioxsdk-type-lxc
+
 if [ $# -ne 2 ] ; then
 	usage
 fi
@@ -27,7 +29,7 @@ IOXAPP_CONF="$2"
 
 . ./make.env
 
-tar -xf ${IOXAPP_HOME}/out/app-lxc_${YOCTO_MACHINE}.tar -C ${IOXAPP_PKGDIR}/
+tar -xf ${IOXAPP_HOME}/out/${WORKDIR}_${YOCTO_MACHINE}.tar -C ${IOXAPP_PKGDIR}/
 tar -zxf ${IOXAPP_PKGDIR}/artifacts.tar.gz -C ${IOXAPP_PKGDIR}/
 cp ${IOXAPP_CONF} ${IOXAPP_PKGDIR}/package_config.ini
 ioxclient pkg ${IOXAPP_PKGDIR}/
