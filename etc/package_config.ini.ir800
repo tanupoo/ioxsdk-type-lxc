@@ -1,0 +1,7 @@
+[spark]
+server_url = https://api.ciscospark.com/v1/messages
+verify_peer = false
+auth_key = xxxx
+room_id = yyyy
+dialect = 只今、%H時%M分%S秒でございます。
+frequency = 32

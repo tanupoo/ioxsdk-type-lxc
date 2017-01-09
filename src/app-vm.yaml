@@ -1,0 +1,26 @@
+descriptor-schema-version: "2.1"
+
+info:
+  name: ${APP_NAME}
+  description: "Simple C Application"
+  version: "0.1"
+  author-link: "http://www.cisco.com"
+  author-name: "Cisco Systems, Inc."
+
+app:
+  type: vm
+  cpuarch: ${CPU_ARCH}
+
+  resources:
+    profile: custom
+    cpu: 500
+    memory: 256
+    disk: 2
+
+    network:
+      -
+        interface-name: eth0
+  # Specify runtime and startup
+  startup:
+    ${APP_STARTUP}
+    qemu-guest-agent: TRUE
