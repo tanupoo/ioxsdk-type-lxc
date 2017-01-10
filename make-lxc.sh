@@ -53,7 +53,7 @@ fi
 	export CPPFLAGS="-I${XC_BASE}/usr/include -I${CURL_BASE}/include" && \
 	export LDFLAGS="-L${XC_BASE}/usr/lib" && \
 	./configure --target=${XC_TARGET} --host=${XC_TARGET} && \
-	make clean & make)
+	make clean && make)
 
 if [ ! -d "${IOXAPP_DIR}" ] ; then
 	echo "ERROR: you have to clone ${IOXAPP_DIR}"
@@ -62,7 +62,7 @@ fi
 (cd ${IOXAPP_DIR} && \
 	export CPPFLAGS="-I${XC_BASE}/usr/include -I${CURL_BASE}/include" && \
 	export LDFLAGS="-L${XC_BASE}/usr/lib -L${CURL_BASE}/lib/.libs -L./ioxutil" && \
-	make clean & make)
+	make clean && make)
 
 echo ""
 echo "===> Creating the sysrootfs containing the applications."
