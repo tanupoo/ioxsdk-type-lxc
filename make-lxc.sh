@@ -29,10 +29,14 @@ fi
 . ./make.env
 
 if [ ! -d "${XC_PATH}" ] ; then
-	make
 	echo ""
-	echo "===> the toolchain for $has been compiled."
-	echo "===> You have to type make again to build whole application."
+	echo "===> Creating the toolchain for ${XC_TARGET}."
+	echo ""
+	make
+
+	echo ""
+	echo "===> the toolchain for ${XC_TARGET} has been compiled."
+	echo "===> You have to type make again to build whole things."
 	echo ""
 	exit 0
 fi
@@ -60,4 +64,7 @@ fi
 	export LDFLAGS="-L${XC_BASE}/usr/lib -L${CURL_BASE}/lib/.libs -L./ioxutil" && \
 	make clean & make)
 
+echo ""
+echo "===> Creating the sysrootfs containing the applications."
+echo ""
 make
