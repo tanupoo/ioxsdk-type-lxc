@@ -34,3 +34,8 @@ tar -zxf ${IOXAPP_PKGDIR}/artifacts.tar.gz -C ${IOXAPP_PKGDIR}/
 cp ${IOXAPP_CONF} ${IOXAPP_PKGDIR}/package_config.ini
 ioxclient pkg ${IOXAPP_PKGDIR}/
 cp ${IOXAPP_PKGDIR}/package.tar out/${IOXAPP_NAME}.${YOCTO_MACHINE}.tar
+
+echo ""
+echo "===> Created the package."
+echo "===>     out/${IOXAPP_NAME}.${YOCTO_MACHINE}.tar"
+echo ""
