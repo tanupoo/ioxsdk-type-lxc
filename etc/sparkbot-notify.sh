@@ -11,11 +11,11 @@
 
 set -e
 
+export CAF_APP_PATH="/data"
+export CAF_APP_CONFIG_FILE="package_config.ini"
+
 SPARKBOT_DIR=/usr/bin
 #SPARKBOT_DEBUG=-dd
-
-export CAF_APP_PATH=/data
-export CAF_APP_CONFIG_FILE=package_config.ini
 
 case "$1" in
 start)
@@ -39,6 +39,8 @@ stop)
 	killall sparkbot-notify.sh
 	;;
 *)
-	echo "Usage: $0 {start|stop}" exit 1
+	echo "Usage: $0 {start|stop}"
+	echo "       SPARKBOT_DEBUG=-dd $0 {start|stop}"
+        exit 1
 	;;
 esac
