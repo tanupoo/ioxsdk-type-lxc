@@ -1,34 +1,44 @@
 #! /bin/sh
 # /etc/init.d/sparkbot-notify
 
+## BEGIN INIT INFO
+# Provides:  sparkbot-notify.sh
+# Required-Start:   $remote_fs $syslog
+# Required-Stop:    $remote_fs $syslog
+# Default-Start:    2 3 4 5
+# Short-Description: Spark Bot Notify
+### END INIT INFO
+
+set -e
+
+SPARKBOT_DIR=/usr/bin
+#SPARKBOT_DEBUG=-dd
+
 export CAF_APP_PATH=/data
 export CAF_APP_CONFIG_FILE=package_config.ini
 
-export CAF_APP_PERSISTENT_DIR=.
-export CAF_APP_LOG_DIR=.
-export CAF_APP_CONFIG_DIR=.
-export CAF_APP_USERNAME=.
-export CAF_HOME=.
-export CAF_HOME_ABS_PATH=.
-export CAF_MODULES_PATH=.
-export CAF_APP_DIR=.
-export CAF_MODULES_DIR=.
-export CAF_APP_ID=.
-
 case "$1" in
 start)
-	sleep 15
 	echo "Starting program"
 	# run application you want to start
-	#/usr/bin/sparkbot-notify -dd
-	/usr/bin/sparkbot-notify
+        if [ -z "${SPARKBOT_DEBUG}" ] ; then
+            sleep 15
+            while true
+            do
+                ${SPARKBOT_DIR}/sparkbot-notify
+                # restart if when the bot exits by an error.
+                sleep 15
+            done
+        else
+            ${SPARKBOT_DIR}/sparkbot-notify ${SPARKBOT_DEBUG}
+        fi
 	;;
 stop)
 	echo "Stopping program"
 	# kill application you want to stop
-	/usr/bin/sparkbot-notify
+	killall sparkbot-notify.sh
 	;;
 *)
-	echo "Usage: /etc/init.d/sparkbot-notify {start|stop}" exit 1
+	echo "Usage: $0 {start|stop}" exit 1
 	;;
 esac
